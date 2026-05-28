@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useStudioStore } from "@/store/studioStore";
 
 const EXAMPLE_PROMPTS = [
@@ -7,11 +8,45 @@ const EXAMPLE_PROMPTS = [
   "Jaqueta jeans ice wash, estilo streetwear urbano",
 ];
 
-const HERO_SWATCHES = [
-  { label: "Jaqueta Denim",  gradient: "linear-gradient(160deg,#F0E8DC,#D9C9B4)" },
-  { label: "Vestido Flora",  gradient: "linear-gradient(160deg,#D8E2EC,#C0CEDC)" },
-  { label: "Blazer Linho",   gradient: "linear-gradient(160deg,#D8E0D4,#BFCDB8)" },
+const HERO_IMAGES = [
+  {
+    url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&h=267&fit=crop&q=75",
+    gradient: "linear-gradient(160deg,#F0E8DC,#D9C9B4)",
+    label: "Editorial",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=267&fit=crop&q=75",
+    gradient: "linear-gradient(160deg,#D8E2EC,#C0CEDC)",
+    label: "Estilo",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1583743814966-8d4f49f8b218?w=200&h=267&fit=crop&q=75",
+    gradient: "linear-gradient(160deg,#D8E0D4,#BFCDB8)",
+    label: "Coleção",
+  },
 ];
+
+function HeroCard({ item, tall }: { item: typeof HERO_IMAGES[0]; tall: boolean }) {
+  const [error, setError] = useState(false);
+  return (
+    <div
+      className="rounded-xl overflow-hidden border border-[hsl(var(--border))] shadow-sm flex-shrink-0"
+      style={{ width: tall ? 120 : 88, height: tall ? 160 : 120 }}
+    >
+      {!error ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={item.url}
+          alt={item.label}
+          className="w-full h-full object-cover"
+          onError={() => setError(true)}
+        />
+      ) : (
+        <div className="w-full h-full" style={{ background: item.gradient }} />
+      )}
+    </div>
+  );
+}
 
 export function EmptyState() {
   const startGeneration = useStudioStore((s) => s.startGeneration);
@@ -36,17 +71,8 @@ export function EmptyState() {
 
       {/* Hero editorial placeholders */}
       <div className="flex items-end gap-3">
-        {HERO_SWATCHES.map((s, i) => (
-          <div
-            key={s.label}
-            className="border border-[hsl(var(--border))] rounded-xl overflow-hidden shadow-sm"
-            style={{
-              background: s.gradient,
-              width: i === 1 ? 120 : 88,
-              height: i === 1 ? 160 : 120,
-            }}
-            aria-hidden="true"
-          />
+        {HERO_IMAGES.map((item, i) => (
+          <HeroCard key={item.label} item={item} tall={i === 1} />
         ))}
       </div>
 

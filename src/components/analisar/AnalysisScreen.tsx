@@ -137,11 +137,17 @@ export function AnalysisScreen({ onUseInStudio }: AnalysisScreenProps) {
       <div className="flex-1 flex overflow-hidden">
         {/* Left sidebar */}
         <div className="w-48 flex-shrink-0 border-r border-[hsl(var(--border))] p-3 flex flex-col gap-4 overflow-y-auto bg-white">
-          <div
-            className="w-full aspect-[3/4] rounded-lg overflow-hidden border border-[hsl(var(--border))] relative"
-            style={{ background: "linear-gradient(160deg,#F0E8DC,#D9C9B4)" }}
-          >
-            <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/30 to-transparent">
+          <div className="w-full aspect-[3/4] rounded-lg overflow-hidden border border-[hsl(var(--border))] relative bg-[hsl(30_10%_93%)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=192&h=256&fit=crop&q=75"
+              alt="Jaqueta Denim Oversized"
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = "none";
+              }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/40 to-transparent">
               <p className="text-[11px] font-semibold text-white leading-tight">
                 Jaqueta Denim Oversized
               </p>

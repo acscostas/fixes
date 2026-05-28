@@ -1,16 +1,23 @@
 "use client";
+import { useState } from "react";
 import { Download, ZoomIn, ScanLine } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { GeneratedImage } from "@/types";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
-const GRADIENT_MAP: Record<string, string> = {
-  "gradient-warm":  "linear-gradient(160deg,#F0E8DC,#D9C9B4)",
-  "gradient-cool":  "linear-gradient(160deg,#D8E2EC,#C0CEDC)",
-  "gradient-sage":  "linear-gradient(160deg,#D8E0D4,#BFCDB8)",
-  "gradient-stone": "linear-gradient(160deg,#E4DDD5,#CEC4B8)",
-};
+const FALLBACK_GRADIENTS = [
+  "linear-gradient(160deg,#F0E8DC,#D9C9B4)",
+  "linear-gradient(160deg,#D8E2EC,#C0CEDC)",
+  "linear-gradient(160deg,#D8E0D4,#BFCDB8)",
+  "linear-gradient(160deg,#E4DDD5,#CEC4B8)",
+];
+
+function hashUrl(url: string) {
+  let h = 0;
+  for (let i = 0; i < url.length; i++) h = (h * 31 + url.charCodeAt(i)) >>> 0;
+  return h % FALLBACK_GRADIENTS.length;
+}
 
 interface ImageCardProps {
   image: GeneratedImage;
@@ -19,6 +26,8 @@ interface ImageCardProps {
 }
 
 export function ImageCard({ image, onZoom, onAnalyze }: ImageCardProps) {
+  const [imgError, setImgError] = useState(false);
+
   if (!image.url) {
     return (
       <div className="rounded-xl overflow-hidden border border-[hsl(var(--border))] bg-white">
@@ -27,7 +36,8 @@ export function ImageCard({ image, onZoom, onAnalyze }: ImageCardProps) {
     );
   }
 
-  const gradient = GRADIENT_MAP[image.url] ?? GRADIENT_MAP["gradient-warm"];
+  const isRealUrl = image.url.startsWith("http");
+  const fallbackGradient = FALLBACK_GRADIENTS[isRealUrl ? hashUrl(image.url) : 0];
 
   return (
     <div
@@ -40,11 +50,22 @@ export function ImageCard({ image, onZoom, onAnalyze }: ImageCardProps) {
       aria-label="Visualizar imagem"
       onKeyDown={(e) => e.key === "Enter" && onZoom(image)}
     >
-      <div
-        className="w-full aspect-[3/4]"
-        style={{ background: gradient }}
-        aria-hidden="true"
-      />
+      {isRealUrl && !imgError ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={image.url}
+          alt={image.prompt || "Imagem gerada"}
+          className="w-full aspect-[3/4] object-cover block"
+          onError={() => setImgError(true)}
+          loading="lazy"
+        />
+      ) : (
+        <div
+          className="w-full aspect-[3/4]"
+          style={{ background: fallbackGradient }}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Hover overlay */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2 gap-1.5 bg-gradient-to-t from-black/40 via-transparent to-transparent">
@@ -71,6 +92,13 @@ export function ImageCard({ image, onZoom, onAnalyze }: ImageCardProps) {
           Analisar
         </button>
       </div>
+
+      {/* Prompt caption on hover */}
+      {image.prompt && (
+        <div className="absolute top-0 left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-gradient-to-b from-black/30 to-transparent">
+          <p className="text-white text-[10px] leading-tight line-clamp-1">{image.prompt}</p>
+        </div>
+      )}
     </div>
   );
 }

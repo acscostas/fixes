@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { Download, ScanLine, ZoomIn, ZoomOut } from "lucide-react";
 import {
   Dialog,
@@ -10,12 +11,7 @@ import { Button } from "@/components/ui/button";
 import type { GeneratedImage } from "@/types";
 import { toast } from "sonner";
 
-const GRADIENT_MAP: Record<string, string> = {
-  "gradient-warm":  "linear-gradient(160deg,#F0E8DC,#D9C9B4)",
-  "gradient-cool":  "linear-gradient(160deg,#D8E2EC,#C0CEDC)",
-  "gradient-sage":  "linear-gradient(160deg,#D8E0D4,#BFCDB8)",
-  "gradient-stone": "linear-gradient(160deg,#E4DDD5,#CEC4B8)",
-};
+const FALLBACK_GRADIENT = "linear-gradient(160deg,#F0E8DC,#D9C9B4)";
 
 interface ZoomModalProps {
   image: GeneratedImage | null;
@@ -25,22 +21,34 @@ interface ZoomModalProps {
 }
 
 export function ZoomModal({ image, open, onClose, onAnalyze }: ZoomModalProps) {
+  const [imgError, setImgError] = useState(false);
+
   if (!image?.url) return null;
 
-  const gradient = GRADIENT_MAP[image.url] ?? GRADIENT_MAP["gradient-warm"];
+  const isRealUrl = image.url.startsWith("http");
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-xs p-4">
         <DialogHeader>
-          <DialogTitle>Visualizar</DialogTitle>
+          <DialogTitle>{image.prompt || "Visualizar"}</DialogTitle>
         </DialogHeader>
 
-        <div
-          className="w-full aspect-[3/4] rounded-lg border border-[hsl(var(--border))]"
-          style={{ background: gradient }}
-          aria-label="Prévia da imagem gerada"
-        />
+        {isRealUrl && !imgError ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={image.url}
+            alt={image.prompt || "Imagem gerada"}
+            className="w-full aspect-[3/4] object-cover rounded-lg border border-[hsl(var(--border))]"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div
+            className="w-full aspect-[3/4] rounded-lg border border-[hsl(var(--border))]"
+            style={{ background: FALLBACK_GRADIENT }}
+            aria-label="Prévia da imagem gerada"
+          />
+        )}
 
         <div className="flex items-center justify-center gap-1.5 pt-1">
           <Button size="icon-sm" variant="outline" aria-label="Reduzir zoom">
