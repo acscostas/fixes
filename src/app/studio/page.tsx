@@ -34,7 +34,7 @@ export default function StudioPage() {
             {/* Backdrop — click closes drawer */}
             {drawerOpen && (
               <div
-                className="absolute inset-0 z-[35] bg-black/30"
+                className="absolute inset-0 z-[35] bg-black/20"
                 onClick={() => setDrawerOpen(false)}
               />
             )}

@@ -21,7 +21,7 @@ export function StudioScreen({ onAnalyze }: StudioScreenProps) {
 
   return (
     <div className="absolute inset-0 flex flex-col overflow-hidden bg-[hsl(var(--background-content))]">
-      <div className="flex-1 overflow-y-auto px-4 pt-6 pb-[200px]">
+      <div className="flex-1 overflow-y-auto px-6 pt-8 pb-[200px]">
         {generatedImages.length === 0 ? (
           <EmptyState />
         ) : (

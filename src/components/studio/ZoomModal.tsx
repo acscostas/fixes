@@ -11,10 +11,10 @@ import type { GeneratedImage } from "@/types";
 import { toast } from "sonner";
 
 const GRADIENT_MAP: Record<string, string> = {
-  "gradient-warm":  "linear-gradient(160deg,#2a1f1a,#3d2b24)",
-  "gradient-cool":  "linear-gradient(160deg,#131e2a,#1c2b3d)",
-  "gradient-sage":  "linear-gradient(160deg,#141f16,#1e2f20)",
-  "gradient-stone": "linear-gradient(160deg,#1f1c19,#2e2924)",
+  "gradient-warm":  "linear-gradient(160deg,#F0E8DC,#D9C9B4)",
+  "gradient-cool":  "linear-gradient(160deg,#D8E2EC,#C0CEDC)",
+  "gradient-sage":  "linear-gradient(160deg,#D8E0D4,#BFCDB8)",
+  "gradient-stone": "linear-gradient(160deg,#E4DDD5,#CEC4B8)",
 };
 
 interface ZoomModalProps {
@@ -33,11 +33,11 @@ export function ZoomModal({ image, open, onClose, onAnalyze }: ZoomModalProps) {
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-xs p-4">
         <DialogHeader>
-          <DialogTitle className="text-white">Visualizar</DialogTitle>
+          <DialogTitle>Visualizar</DialogTitle>
         </DialogHeader>
 
         <div
-          className="w-full aspect-[3/4] rounded-lg border border-white/[0.06]"
+          className="w-full aspect-[3/4] rounded-lg border border-[hsl(var(--border))]"
           style={{ background: gradient }}
           aria-label="Prévia da imagem gerada"
         />

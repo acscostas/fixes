@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
-import { Upload, X, Image as ImageIcon } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ReferenceUploadProps {
@@ -40,19 +40,19 @@ export function ReferenceUpload({
   if (preview && value) {
     return (
       <div className="relative flex flex-col items-center gap-1.5">
-        <div className="relative w-16 h-[72px] rounded-md overflow-hidden border border-white/[0.08] bg-surface group">
+        <div className="relative w-16 h-[72px] rounded-md overflow-hidden border border-[hsl(var(--border))] bg-[hsl(var(--surface))] group">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={preview} alt={label} className="w-full h-full object-cover" />
           <button
             type="button"
             onClick={() => onChange(null)}
-            className="absolute top-0.5 right-0.5 h-5 w-5 rounded-full bg-black/70 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute top-0.5 right-0.5 h-5 w-5 rounded-full bg-white/90 border border-[hsl(var(--border))] text-[hsl(var(--foreground))] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
             aria-label={`Remover ${label}`}
           >
             <X className="h-3 w-3" />
           </button>
         </div>
-        <span className="text-[10px] text-center text-muted-foreground leading-tight max-w-[64px] truncate">
+        <span className="text-[10px] text-center text-[hsl(var(--muted-foreground))] leading-tight max-w-[64px] truncate">
           {value.name}
         </span>
       </div>
@@ -66,18 +66,18 @@ export function ReferenceUpload({
         className={cn(
           "w-16 h-[72px] rounded-md border-[1.5px] border-dashed cursor-pointer transition-all flex flex-col items-center justify-center gap-1",
           isDragActive
-            ? "border-[hsl(var(--accent-primary))] bg-[hsl(271_81%_66%_/_0.1)]"
-            : "border-white/[0.12] bg-surface hover:border-white/[0.25] hover:bg-surface-elevated",
+            ? "border-[hsl(var(--accent-primary))] bg-[hsl(271_60%_55%_/_0.06)]"
+            : "border-[hsl(var(--border))] bg-[hsl(var(--surface))] hover:border-[hsl(var(--accent-primary))] hover:bg-[hsl(30_10%_97%)]",
           error && "border-destructive"
         )}
       >
         <input {...getInputProps()} />
-        {icon ?? <Upload className="h-4 w-4 text-muted-foreground" />}
+        {icon ?? <Upload className="h-4 w-4 text-[hsl(var(--muted-foreground))]" />}
       </div>
       <span
         className={cn(
           "text-[10px] text-center leading-tight",
-          error ? "text-destructive" : "text-muted-foreground"
+          error ? "text-destructive" : "text-[hsl(var(--muted-foreground))]"
         )}
       >
         {label}

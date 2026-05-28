@@ -4,39 +4,40 @@
 
 @layer base {
   :root {
-    --background:            0 0% 4%;
-    --background-content:    0 0% 5%;
-    --foreground:            0 0% 95%;
-    --muted-foreground:      0 0% 53%;
-    --subtle-foreground:     0 0% 38%;
-    --card:                  0 0% 8%;
-    --card-foreground:       0 0% 95%;
-    --popover:               0 0% 10%;
-    --popover-foreground:    0 0% 95%;
-    --border:                0 0% 14%;
-    --input:                 0 0% 16%;
-    --primary:               0 0% 95%;
-    --primary-foreground:    0 0% 4%;
-    --secondary:             0 0% 13%;
-    --secondary-foreground:  0 0% 85%;
-    --muted:                 0 0% 10%;
-    --accent:                0 0% 13%;
-    --accent-foreground:     0 0% 95%;
+    /* Editorial light palette */
+    --background:            30 15% 97%;    /* #F8F7F5 – warm off-white canvas */
+    --background-content:    30 10% 95%;    /* gallery background */
+    --foreground:            220 14% 11%;   /* near-black charcoal */
+    --muted-foreground:      220 8% 46%;    /* medium gray */
+    --subtle-foreground:     220 8% 64%;    /* placeholder gray */
+    --card:                  0 0% 100%;     /* pure white cards */
+    --card-foreground:       220 14% 11%;
+    --popover:               0 0% 100%;
+    --popover-foreground:    220 14% 11%;
+    --border:                30 12% 89%;    /* warm light border */
+    --input:                 30 12% 94%;
+    --primary:               220 14% 11%;
+    --primary-foreground:    0 0% 98%;
+    --secondary:             30 10% 93%;
+    --secondary-foreground:  220 14% 20%;
+    --muted:                 30 10% 93%;
+    --accent:                30 10% 93%;
+    --accent-foreground:     220 14% 11%;
     --destructive:           0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --ring:                  271 81% 66%;
+    --ring:                  271 60% 55%;
     --radius:                0.5rem;
 
-    --surface:               0 0% 8%;
-    --surface-elevated:      0 0% 12%;
-    --accent-primary:        271 81% 66%;
+    --surface:               0 0% 100%;
+    --surface-elevated:      30 15% 97%;
+    --accent-primary:        271 60% 55%;   /* violet – brand CTA only */
 
     --feedback-negative:     0 72% 51%;
-    --feedback-positive:     142 71% 45%;
-    --feedback-warning:      38 92% 50%;
-    --feedback-info:         217 91% 60%;
-    --feedback-warning-bg:   38 100% 8%;
-    --feedback-warning-border: 38 60% 22%;
+    --feedback-positive:     142 71% 38%;
+    --feedback-warning:      38 92% 46%;
+    --feedback-info:         217 91% 52%;
+    --feedback-warning-bg:   38 100% 97%;
+    --feedback-warning-border: 38 55% 80%;
   }
 
   * {
@@ -49,44 +50,36 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  ::-webkit-scrollbar        { width: 3px; height: 3px; }
+  ::-webkit-scrollbar        { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track  { background: transparent; }
-  ::-webkit-scrollbar-thumb  { background: hsl(271 81% 66% / 0.3); border-radius: 9999px; }
-  ::-webkit-scrollbar-thumb:hover { background: hsl(271 81% 66% / 0.6); }
+  ::-webkit-scrollbar-thumb  { background: hsl(220 8% 80%); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(220 8% 60%); }
 }
 
 @layer components {
-  .glass-panel {
-    background: rgb(255 255 255 / 0.04);
-    border: 1px solid rgb(255 255 255 / 0.08);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+  .panel {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
   }
 
   .btn-generate {
-    background: hsl(271 81% 66%);
+    background: hsl(var(--accent-primary));
     color: #fff;
-    box-shadow:
-      0 0 16px hsl(271 81% 66% / 0.35),
-      0 0 40px hsl(271 81% 66% / 0.15);
-    transition: box-shadow 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+    transition: opacity 0.15s ease, transform 0.1s ease;
   }
   .btn-generate:hover:not(:disabled) {
-    box-shadow:
-      0 0 24px hsl(271 81% 66% / 0.55),
-      0 0 60px hsl(271 81% 66% / 0.25);
+    opacity: 0.88;
   }
-  .btn-generate:active:not(:disabled) { transform: scale(0.97); }
-  .btn-generate:disabled { opacity: 0.45; box-shadow: none; cursor: not-allowed; }
+  .btn-generate:active:not(:disabled) { transform: scale(0.98); }
+  .btn-generate:disabled { opacity: 0.4; cursor: not-allowed; }
 
   .card-image {
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
   .card-image:hover {
     box-shadow:
-      0 0 0 1px hsl(271 81% 66% / 0.35),
-      0 8px 32px hsl(271 81% 66% / 0.12),
-      0 2px 8px rgb(0 0 0 / 0.4);
-    transform: translateY(-1px);
+      0 8px 32px rgb(0 0 0 / 0.10),
+      0 2px 8px rgb(0 0 0 / 0.06);
+    transform: translateY(-2px);
   }
 }

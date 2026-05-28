@@ -1,5 +1,4 @@
 "use client";
-import { Sparkles } from "lucide-react";
 import { useStudioStore } from "@/store/studioStore";
 
 const EXAMPLE_PROMPTS = [
@@ -8,10 +7,15 @@ const EXAMPLE_PROMPTS = [
   "Jaqueta jeans ice wash, estilo streetwear urbano",
 ];
 
+const HERO_SWATCHES = [
+  { label: "Jaqueta Denim",  gradient: "linear-gradient(160deg,#F0E8DC,#D9C9B4)" },
+  { label: "Vestido Flora",  gradient: "linear-gradient(160deg,#D8E2EC,#C0CEDC)" },
+  { label: "Blazer Linho",   gradient: "linear-gradient(160deg,#D8E0D4,#BFCDB8)" },
+];
+
 export function EmptyState() {
-  const lastPrompt = useStudioStore((s) => s.lastPrompt);
   const startGeneration = useStudioStore((s) => s.startGeneration);
-  const setProgress = useStudioStore((s) => s.setProgress);
+  const setProgress     = useStudioStore((s) => s.setProgress);
   const finishGeneration = useStudioStore((s) => s.finishGeneration);
 
   const generate = (prompt: string) => {
@@ -28,30 +32,45 @@ export function EmptyState() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full min-h-[400px] gap-6 px-6 text-center">
-      <div className="relative">
-        <div className="h-16 w-16 rounded-2xl flex items-center justify-center"
-          style={{ background: "linear-gradient(135deg, hsl(271 81% 45%), hsl(291 81% 66%))" }}>
-          <Sparkles className="h-7 w-7 text-white" />
-        </div>
-        <div className="absolute inset-0 rounded-2xl blur-xl opacity-40"
-          style={{ background: "linear-gradient(135deg, hsl(271 81% 45%), hsl(291 81% 66%))" }} />
+    <div className="flex flex-col items-center justify-center h-full min-h-[500px] gap-10 px-4">
+
+      {/* Hero editorial placeholders */}
+      <div className="flex items-end gap-3">
+        {HERO_SWATCHES.map((s, i) => (
+          <div
+            key={s.label}
+            className="border border-[hsl(var(--border))] rounded-xl overflow-hidden shadow-sm"
+            style={{
+              background: s.gradient,
+              width: i === 1 ? 120 : 88,
+              height: i === 1 ? 160 : 120,
+            }}
+            aria-hidden="true"
+          />
+        ))}
       </div>
 
-      <div>
-        <h2 className="text-lg font-semibold text-white mb-2">Comece criando</h2>
-        <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-          Escolha um modo na barra abaixo, descreva o que deseja criar e clique em Gerar.
+      {/* Text */}
+      <div className="text-center max-w-xs">
+        <h2 className="text-base font-semibold text-[hsl(var(--foreground))] mb-2">
+          Crie sua primeira peça
+        </h2>
+        <p className="text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+          Escolha um modo na barra abaixo, descreva o que deseja e clique em{" "}
+          <span className="font-medium text-[hsl(var(--foreground))]">Gerar</span>.
         </p>
       </div>
 
+      {/* Example prompts */}
       <div className="flex flex-col gap-2 w-full max-w-sm">
-        <p className="text-xs text-muted-foreground mb-1">Exemplos de prompt:</p>
+        <p className="text-[11px] text-[hsl(var(--muted-foreground))] uppercase tracking-wider font-medium mb-0.5">
+          Sugestões
+        </p>
         {EXAMPLE_PROMPTS.map((p) => (
           <button
             key={p}
             onClick={() => generate(p)}
-            className="w-full text-left px-3 py-2.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-xs text-muted-foreground hover:text-white hover:border-white/[0.14] hover:bg-white/[0.06] transition-all"
+            className="w-full text-left px-3.5 py-2.5 rounded-lg border border-[hsl(var(--border))] bg-white text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--accent-primary)/0.4)] hover:bg-[hsl(30_10%_98%)] transition-all"
           >
             {p}
           </button>

@@ -17,7 +17,7 @@ interface ToggleGroupProps {
 export function ToggleGroup({ options, value, onChange, className }: ToggleGroupProps) {
   return (
     <div
-      className={cn("flex rounded-md border border-white/[0.08] overflow-hidden", className)}
+      className={cn("flex rounded-md border border-[hsl(var(--border))] overflow-hidden", className)}
       role="radiogroup"
     >
       {options.map((opt) => (
@@ -30,8 +30,8 @@ export function ToggleGroup({ options, value, onChange, className }: ToggleGroup
           className={cn(
             "flex-1 px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring",
             value === opt.value
-              ? "bg-[hsl(var(--accent-primary))] text-white"
-              : "bg-transparent text-muted-foreground hover:text-white hover:bg-white/[0.06]"
+              ? "bg-[hsl(var(--foreground))] text-white"
+              : "bg-transparent text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(30_10%_93%)]"
           )}
         >
           {opt.label}

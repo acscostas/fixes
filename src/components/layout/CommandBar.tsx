@@ -10,12 +10,12 @@ import type { Mode, Quantity } from "@/types";
 import { toast } from "sonner";
 
 const MODES: { id: Mode; label: string; icon: React.ReactNode }[] = [
-  { id: "cor",     label: "Variantes de Cor",   icon: <IconPalette className="h-3.5 w-3.5" /> },
-  { id: "estampa", label: "Aplicar Estampa",    icon: <IconEstampa className="h-3.5 w-3.5" /> },
-  { id: "modelo",  label: "Produto em Modelo",  icon: <IconModelo className="h-3.5 w-3.5" /> },
-  { id: "multi",   label: "Múltiplas Refs.",    icon: <IconMulti className="h-3.5 w-3.5" /> },
-  { id: "sketch2", label: "Sketch-to-Render",   icon: <IconSketch className="h-3.5 w-3.5" /> },
-  { id: "foto",    label: "Foto → Técnico",     icon: <IconFoto className="h-3.5 w-3.5" /> },
+  { id: "cor",     label: "Variantes de Cor",  icon: <IconPalette className="h-3.5 w-3.5" /> },
+  { id: "estampa", label: "Aplicar Estampa",   icon: <IconEstampa className="h-3.5 w-3.5" /> },
+  { id: "modelo",  label: "Produto em Modelo", icon: <IconModelo className="h-3.5 w-3.5" /> },
+  { id: "multi",   label: "Múltiplas Refs.",   icon: <IconMulti className="h-3.5 w-3.5" /> },
+  { id: "sketch2", label: "Sketch-to-Render",  icon: <IconSketch className="h-3.5 w-3.5" /> },
+  { id: "foto",    label: "Foto → Técnico",    icon: <IconFoto className="h-3.5 w-3.5" /> },
 ];
 
 const QUANTITIES: Quantity[] = [1, 2, 4];
@@ -72,11 +72,13 @@ export function CommandBar({ onOpenDrawer, onToggleDrawer, drawerOpen }: Command
 
   return (
     <div className="absolute bottom-0 left-0 right-0 z-30 p-3 pb-4">
-      <div className="glass-panel rounded-2xl overflow-hidden shadow-2xl">
+      <div className="panel rounded-xl overflow-hidden shadow-[0_-1px_0_hsl(var(--border)),0_4px_24px_rgb(0_0_0/0.08)]">
 
-        {/* Mode chips row */}
-        <div className="flex gap-1.5 px-3 pt-3 pb-2.5 overflow-x-auto scrollbar-none border-b border-white/[0.06]"
-          style={{ scrollbarWidth: "none" }}>
+        {/* Mode chips */}
+        <div
+          className="flex gap-1.5 px-3 pt-2.5 pb-2.5 overflow-x-auto border-b border-[hsl(var(--border))]"
+          style={{ scrollbarWidth: "none" }}
+        >
           {MODES.map((mode) => (
             <button
               key={mode.id}
@@ -92,8 +94,8 @@ export function CommandBar({ onOpenDrawer, onToggleDrawer, drawerOpen }: Command
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-all",
                 activeMode === mode.id && drawerOpen
-                  ? "bg-[hsl(var(--accent-primary))] text-white shadow-[0_0_12px_hsl(271_81%_66%_/_0.4)]"
-                  : "bg-white/[0.06] text-muted-foreground hover:bg-white/[0.10] hover:text-white border border-white/[0.06]"
+                  ? "bg-[hsl(var(--accent-primary))] text-white"
+                  : "bg-[hsl(30_10%_93%)] text-[hsl(var(--muted-foreground))] hover:bg-[hsl(30_10%_89%)] hover:text-[hsl(var(--foreground))] border border-[hsl(var(--border))]"
               )}
             >
               {mode.icon}
@@ -110,23 +112,22 @@ export function CommandBar({ onOpenDrawer, onToggleDrawer, drawerOpen }: Command
             onKeyDown={handleKeyDown}
             placeholder="Descreva o que você quer criar, ou use os modos acima para configurar..."
             rows={2}
-            className="w-full bg-transparent text-sm text-white placeholder:text-[hsl(var(--subtle-foreground))] focus:outline-none resize-none leading-relaxed"
+            className="w-full bg-transparent text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--subtle-foreground))] focus:outline-none resize-none leading-relaxed"
           />
         </div>
 
         {/* Actions row */}
         <div className="flex items-center gap-2 px-3 pb-3">
-          {/* Ref upload */}
           <button
             onClick={() => toast.info("Upload de referência em breve")}
-            className="h-7 w-7 flex items-center justify-center rounded-md bg-white/[0.06] border border-white/[0.06] text-muted-foreground hover:text-white hover:bg-white/[0.10] transition-colors"
+            className="h-7 w-7 flex items-center justify-center rounded-md bg-[hsl(30_10%_93%)] border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(30_10%_89%)] transition-colors"
             aria-label="Anexar referência"
           >
             <Paperclip className="h-3.5 w-3.5" />
           </button>
 
           {/* Quantity */}
-          <div className="flex rounded-md overflow-hidden border border-white/[0.08]">
+          <div className="flex rounded-md overflow-hidden border border-[hsl(var(--border))]">
             {QUANTITIES.map((q) => (
               <button
                 key={q}
@@ -134,8 +135,8 @@ export function CommandBar({ onOpenDrawer, onToggleDrawer, drawerOpen }: Command
                 className={cn(
                   "px-2.5 py-1 text-xs font-medium transition-colors",
                   quantity === q
-                    ? "bg-white/[0.15] text-white"
-                    : "text-muted-foreground hover:text-white bg-transparent"
+                    ? "bg-[hsl(var(--foreground))] text-white"
+                    : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] bg-transparent"
                 )}
               >
                 {q}
@@ -146,26 +147,26 @@ export function CommandBar({ onOpenDrawer, onToggleDrawer, drawerOpen }: Command
           {/* Aspect ratio */}
           <button
             onClick={cycleAspectRatio}
-            className="flex items-center gap-1 h-7 px-2.5 rounded-md bg-white/[0.06] border border-white/[0.06] text-xs text-muted-foreground hover:text-white hover:bg-white/[0.10] transition-colors"
+            className="flex items-center gap-1 h-7 px-2.5 rounded-md bg-[hsl(30_10%_93%)] border border-[hsl(var(--border))] text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(30_10%_89%)] transition-colors"
           >
             <RectangleVertical className="h-3 w-3" />
             {aspectRatio}
           </button>
 
-          {/* Advanced settings toggle */}
+          {/* Advanced settings */}
           <button
             onClick={() => toast.info("Abra o painel de modo para configurações avançadas")}
-            className="h-7 w-7 flex items-center justify-center rounded-md bg-white/[0.06] border border-white/[0.06] text-muted-foreground hover:text-white hover:bg-white/[0.10] transition-colors"
+            className="h-7 w-7 flex items-center justify-center rounded-md bg-[hsl(30_10%_93%)] border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(30_10%_89%)] transition-colors"
             aria-label="Configurações avançadas"
           >
             <Settings2 className="h-3.5 w-3.5" />
           </button>
 
-          {/* GERAR button */}
+          {/* GERAR */}
           <button
             onClick={handleGenerate}
             disabled={isGenerating}
-            className="ml-auto btn-generate flex items-center gap-2 h-8 px-4 rounded-lg text-sm font-semibold disabled:pointer-events-none"
+            className="ml-auto btn-generate flex items-center gap-2 h-8 px-5 rounded-lg text-sm font-semibold disabled:pointer-events-none"
           >
             {isGenerating
               ? <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Gerando…</>
@@ -176,17 +177,16 @@ export function CommandBar({ onOpenDrawer, onToggleDrawer, drawerOpen }: Command
 
         {/* Progress bar */}
         {isGenerating && (
-          <div className="h-0.5 bg-white/[0.06]">
+          <div className="h-0.5 bg-[hsl(30_10%_90%)]">
             <div
               className="h-full bg-[hsl(var(--accent-primary))] transition-all duration-200"
-              style={{ width: `${progress}%`,
-                boxShadow: "0 0 8px hsl(271 81% 66% / 0.8)" }}
+              style={{ width: `${progress}%` }}
             />
           </div>
         )}
       </div>
 
-      <p className="text-center text-[10px] text-muted-foreground mt-1.5 opacity-50">
+      <p className="text-center text-[10px] text-[hsl(var(--subtle-foreground))] mt-1.5">
         ⌘↵ para gerar
       </p>
     </div>

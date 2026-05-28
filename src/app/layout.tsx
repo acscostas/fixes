@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className="h-full bg-background antialiased">
         <NuqsAdapter>
           {children}
-          <Toaster position="bottom-center" richColors theme="dark" />
+          <Toaster position="bottom-center" richColors theme="light" />
         </NuqsAdapter>
       </body>
     </html>
