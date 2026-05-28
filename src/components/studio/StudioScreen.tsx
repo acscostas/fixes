@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import { CanvasHeader } from "./CanvasHeader";
+import { useStudioStore } from "@/store/studioStore";
 import { GeneratedGallery } from "./GeneratedGallery";
-import { DockPanel } from "./DockPanel";
 import { ZoomModal } from "./ZoomModal";
+import { EmptyState } from "./EmptyState";
 import type { GeneratedImage } from "@/types";
 
 interface StudioScreenProps {
@@ -12,6 +12,7 @@ interface StudioScreenProps {
 
 export function StudioScreen({ onAnalyze }: StudioScreenProps) {
   const [zoomImage, setZoomImage] = useState<GeneratedImage | null>(null);
+  const generatedImages = useStudioStore((s) => s.generatedImages);
 
   const handleAnalyze = (_image: GeneratedImage) => {
     setZoomImage(null);
@@ -19,17 +20,14 @@ export function StudioScreen({ onAnalyze }: StudioScreenProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-[hsl(var(--background-content))]">
-      <CanvasHeader />
-
-      <div className="flex-1 overflow-y-auto p-4">
-        <GeneratedGallery
-          onZoom={setZoomImage}
-          onAnalyze={handleAnalyze}
-        />
+    <div className="absolute inset-0 flex flex-col overflow-hidden bg-[hsl(var(--background-content))]">
+      <div className="flex-1 overflow-y-auto px-4 pt-6 pb-[200px]">
+        {generatedImages.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <GeneratedGallery onZoom={setZoomImage} onAnalyze={handleAnalyze} />
+        )}
       </div>
-
-      <DockPanel />
 
       <ZoomModal
         image={zoomImage}

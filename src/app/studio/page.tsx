@@ -2,22 +2,23 @@
 import { useState } from "react";
 import { useStudioStore } from "@/store/studioStore";
 import { TopNav } from "@/components/layout/TopNav";
-import { LeftPanel } from "@/components/layout/LeftPanel";
-import { FooterBar } from "@/components/layout/FooterBar";
+import { CommandBar } from "@/components/layout/CommandBar";
+import { ModeDrawer } from "@/components/layout/ModeDrawer";
 import { StudioScreen } from "@/components/studio/StudioScreen";
 import { AnalysisScreen } from "@/components/analisar/AnalysisScreen";
+import { Sparkles } from "lucide-react";
 import type { Mode } from "@/types";
 
 type Tab = "studio" | "analisar" | "hist";
 
 export default function StudioPage() {
   const [activeTab, setActiveTab] = useState<Tab>("studio");
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const setMode = useStudioStore((s) => s.setMode);
-
-  const handleTabChange = (tab: Tab) => setActiveTab(tab);
 
   const handleUseInStudio = (mode: Mode) => {
     setMode(mode);
+    setDrawerOpen(true);
     setActiveTab("studio");
   };
 
@@ -25,13 +26,32 @@ export default function StudioPage() {
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-background">
-      <TopNav activeTab={activeTab} onTabChange={handleTabChange} />
+      <TopNav activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <div className="flex-1 flex overflow-hidden">
-        {isStudio && <LeftPanel />}
+      <div className="flex-1 relative overflow-hidden">
+        {isStudio && (
+          <>
+            {/* Backdrop — click closes drawer */}
+            {drawerOpen && (
+              <div
+                className="absolute inset-0 z-[35] bg-black/30"
+                onClick={() => setDrawerOpen(false)}
+              />
+            )}
 
-        {activeTab === "studio" && (
-          <StudioScreen onAnalyze={() => setActiveTab("analisar")} />
+            <ModeDrawer
+              open={drawerOpen}
+              onClose={() => setDrawerOpen(false)}
+            />
+
+            <StudioScreen onAnalyze={() => setActiveTab("analisar")} />
+
+            <CommandBar
+              onOpenDrawer={() => setDrawerOpen(true)}
+              onToggleDrawer={() => setDrawerOpen((v) => !v)}
+              drawerOpen={drawerOpen}
+            />
+          </>
         )}
 
         {activeTab === "analisar" && (
@@ -39,26 +59,19 @@ export default function StudioPage() {
         )}
 
         {activeTab === "hist" && (
-          <div className="flex-1 flex flex-col items-center justify-center gap-3 text-muted-foreground">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 opacity-30"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <p className="text-sm font-medium">Histórico em breve</p>
-            <p className="text-xs text-muted-foreground/70">
-              Suas gerações anteriores aparecerão aqui
-            </p>
+          <div className="flex-1 flex flex-col items-center justify-center gap-4 h-full text-muted-foreground">
+            <div className="h-12 w-12 rounded-xl border border-white/[0.08] bg-white/[0.04] flex items-center justify-center">
+              <Sparkles className="h-5 w-5 opacity-40" />
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-medium text-white/70">Histórico em breve</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Suas gerações anteriores aparecerão aqui
+              </p>
+            </div>
           </div>
         )}
       </div>
-
-      {isStudio && <FooterBar />}
     </div>
   );
 }

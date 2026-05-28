@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-roboto)", "Roboto", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",
@@ -46,6 +46,9 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        surface: "hsl(var(--surface))",
+        "surface-elevated": "hsl(var(--surface-elevated))",
+        "accent-primary": "hsl(var(--accent-primary))",
         "feedback-negative": "hsl(var(--feedback-negative))",
         "feedback-positive": "hsl(var(--feedback-positive))",
         "feedback-warning": "hsl(var(--feedback-warning))",
@@ -55,6 +58,15 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 16px hsl(271 81% 66% / 0.25)" },
+          "50%":       { boxShadow: "0 0 28px hsl(271 81% 66% / 0.45)" },
+        },
+      },
+      animation: {
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
       },
     },
   },

@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 const GRADIENT_MAP: Record<string, string> = {
-  "gradient-warm": "linear-gradient(160deg,#f0ebe6,#e4ddd5)",
-  "gradient-cool": "linear-gradient(160deg,#e0e8f0,#d4dfe8)",
-  "gradient-sage": "linear-gradient(160deg,#e2ebe4,#d4e0d6)",
-  "gradient-stone": "linear-gradient(160deg,#ede9e4,#e0dbd5)",
+  "gradient-warm":  "linear-gradient(160deg,#2a1f1a,#3d2b24)",
+  "gradient-cool":  "linear-gradient(160deg,#131e2a,#1c2b3d)",
+  "gradient-sage":  "linear-gradient(160deg,#141f16,#1e2f20)",
+  "gradient-stone": "linear-gradient(160deg,#1f1c19,#2e2924)",
 };
 
 interface ImageCardProps {
@@ -21,17 +21,19 @@ interface ImageCardProps {
 export function ImageCard({ image, onZoom, onAnalyze }: ImageCardProps) {
   if (!image.url) {
     return (
-      <div className="rounded-lg overflow-hidden border border-border bg-card">
-        <Skeleton className="w-full aspect-[3/4] rounded-none" />
+      <div className="rounded-xl overflow-hidden border border-white/[0.06] bg-surface">
+        <Skeleton className="w-full aspect-[3/4] rounded-none bg-surface-elevated" />
       </div>
     );
   }
 
-  const gradient = GRADIENT_MAP[image.url] ?? "linear-gradient(160deg,#f0ebe6,#e4ddd5)";
+  const gradient = GRADIENT_MAP[image.url] ?? GRADIENT_MAP["gradient-warm"];
 
   return (
     <div
-      className="group rounded-lg overflow-hidden border border-border bg-card cursor-pointer relative transition-shadow hover:shadow-md"
+      className={cn(
+        "group rounded-xl overflow-hidden border border-white/[0.06] bg-surface cursor-pointer relative card-image"
+      )}
       onClick={() => onZoom(image)}
       role="button"
       tabIndex={0}
@@ -45,23 +47,23 @@ export function ImageCard({ image, onZoom, onAnalyze }: ImageCardProps) {
       />
 
       {/* Hover overlay */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2 gap-1.5 bg-gradient-to-t from-black/20 via-transparent to-transparent">
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2 gap-1.5 bg-gradient-to-t from-black/60 via-black/10 to-transparent">
         <button
-          className="h-7 w-7 rounded-md bg-white/90 border border-white/20 flex items-center justify-center hover:bg-white transition-colors"
+          className="h-7 w-7 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
           onClick={(e) => { e.stopPropagation(); onZoom(image); }}
           aria-label="Ampliar imagem"
         >
-          <ZoomIn className="h-3.5 w-3.5 text-foreground" />
+          <ZoomIn className="h-3.5 w-3.5 text-white" />
         </button>
         <button
-          className="h-7 w-7 rounded-md bg-white/90 border border-white/20 flex items-center justify-center hover:bg-white transition-colors"
+          className="h-7 w-7 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
           onClick={(e) => { e.stopPropagation(); toast.success("Download iniciado!"); }}
           aria-label="Baixar imagem"
         >
-          <Download className="h-3.5 w-3.5 text-foreground" />
+          <Download className="h-3.5 w-3.5 text-white" />
         </button>
         <button
-          className="h-7 flex items-center gap-1.5 px-2.5 rounded-md bg-foreground text-background text-xs font-medium hover:bg-foreground/90 transition-colors ml-auto"
+          className="h-7 flex items-center gap-1.5 px-2.5 rounded-lg bg-[hsl(var(--accent-primary))] text-white text-xs font-medium hover:opacity-90 transition-opacity ml-auto"
           onClick={(e) => { e.stopPropagation(); onAnalyze(image); }}
           aria-label="Analisar imagem"
         >

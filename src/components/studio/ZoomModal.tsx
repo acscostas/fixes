@@ -11,10 +11,10 @@ import type { GeneratedImage } from "@/types";
 import { toast } from "sonner";
 
 const GRADIENT_MAP: Record<string, string> = {
-  "gradient-warm": "linear-gradient(160deg,#f0ebe6,#e4ddd5)",
-  "gradient-cool": "linear-gradient(160deg,#e0e8f0,#d4dfe8)",
-  "gradient-sage": "linear-gradient(160deg,#e2ebe4,#d4e0d6)",
-  "gradient-stone": "linear-gradient(160deg,#ede9e4,#e0dbd5)",
+  "gradient-warm":  "linear-gradient(160deg,#2a1f1a,#3d2b24)",
+  "gradient-cool":  "linear-gradient(160deg,#131e2a,#1c2b3d)",
+  "gradient-sage":  "linear-gradient(160deg,#141f16,#1e2f20)",
+  "gradient-stone": "linear-gradient(160deg,#1f1c19,#2e2924)",
 };
 
 interface ZoomModalProps {
@@ -27,17 +27,17 @@ interface ZoomModalProps {
 export function ZoomModal({ image, open, onClose, onAnalyze }: ZoomModalProps) {
   if (!image?.url) return null;
 
-  const gradient = GRADIENT_MAP[image.url] ?? "linear-gradient(160deg,#f0ebe6,#e4ddd5)";
+  const gradient = GRADIENT_MAP[image.url] ?? GRADIENT_MAP["gradient-warm"];
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-xs p-4">
         <DialogHeader>
-          <DialogTitle>Visualizar</DialogTitle>
+          <DialogTitle className="text-white">Visualizar</DialogTitle>
         </DialogHeader>
 
         <div
-          className="w-full aspect-[3/4] rounded-md"
+          className="w-full aspect-[3/4] rounded-lg border border-white/[0.06]"
           style={{ background: gradient }}
           aria-label="Prévia da imagem gerada"
         />
@@ -62,7 +62,7 @@ export function ZoomModal({ image, open, onClose, onAnalyze }: ZoomModalProps) {
           </Button>
           <Button
             size="sm"
-            variant="default"
+            variant="generate"
             className="ml-1"
             onClick={() => { onClose(); onAnalyze(image); }}
           >

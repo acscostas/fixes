@@ -13,10 +13,10 @@ export function GeneratedGallery({ onZoom, onAnalyze }: GeneratedGalleryProps) {
   const { generatedImages, quantity } = useStudioStore();
 
   const gridClass = cn(
-    "grid gap-3 w-full",
-    quantity === 1 && "grid-cols-1 max-w-[220px] mx-auto",
-    quantity === 2 && "grid-cols-2",
-    quantity === 4 && "grid-cols-4"
+    "grid gap-4 w-full",
+    quantity === 1 && "grid-cols-1 max-w-[260px] mx-auto",
+    quantity === 2 && "grid-cols-2 max-w-xl mx-auto",
+    quantity === 4 && "grid-cols-2 sm:grid-cols-4"
   );
 
   return (

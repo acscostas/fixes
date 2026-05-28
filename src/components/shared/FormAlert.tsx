@@ -11,7 +11,7 @@ export function FormAlert({ children, className }: FormAlertProps) {
     <div
       className={cn(
         "flex gap-2 rounded-md px-3 py-2.5 text-xs leading-relaxed",
-        "bg-[hsl(var(--feedback-warning-bg))] border border-[hsl(var(--feedback-warning-border))] text-[hsl(38,55%,35%)]",
+        "bg-[hsl(var(--feedback-warning-bg))] border border-[hsl(var(--feedback-warning-border))] text-[hsl(38,70%,65%)]",
         className
       )}
     >
