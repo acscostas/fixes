@@ -1,0 +1,24 @@
+// Semantic icon re-exports — swap this file when the DS icon package is available
+export { Palette as IconPalette } from "lucide-react";
+export { LayoutGrid as IconEstampa } from "lucide-react";
+export { User as IconModelo } from "lucide-react";
+export { Copy as IconMulti } from "lucide-react";
+export { Pencil as IconSketch } from "lucide-react";
+export { FileImage as IconFoto } from "lucide-react";
+export { Wand2 as IconGenerate } from "lucide-react";
+export { ScanLine as IconAnalisar } from "lucide-react";
+export { History as IconHistory } from "lucide-react";
+export { Download as IconDownload } from "lucide-react";
+export { ZoomIn as IconZoom } from "lucide-react";
+export { X as IconClose } from "lucide-react";
+export { Plus as IconPlus } from "lucide-react";
+export { Minus as IconMinus } from "lucide-react";
+export { Upload as IconUpload } from "lucide-react";
+export { ChevronDown as IconChevronDown } from "lucide-react";
+export { Settings2 as IconAdvanced } from "lucide-react";
+export { AlertTriangle as IconWarn } from "lucide-react";
+export { Loader2 as IconLoader } from "lucide-react";
+export { ClipboardPaste as IconPaste } from "lucide-react";
+export { RotateCcw as IconLast } from "lucide-react";
+export { Cpu as IconModel } from "lucide-react";
+export { RectangleVertical as IconRatio } from "lucide-react";
