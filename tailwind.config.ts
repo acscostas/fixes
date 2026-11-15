@@ -11,8 +11,11 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Anton", "Impact", "sans-serif"],
       },
       colors: {
+        burgundy: "#8A1538",
+        cream: "#FBF1DF",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
