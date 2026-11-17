@@ -14,6 +14,7 @@
   --ink-soft: #4A443F;
   --tomato: #C8321E;
   --tomato-deep: #8E1F12;
+  --lilac: #B07FB8;
   --tape: rgba(242, 232, 205, .78);
 
   --f-grot: "Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -146,7 +147,7 @@ img { display: block; max-width: 100%; }
 }
 .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-notes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.note { position: absolute; color: var(--paper); font-size: clamp(22px, 2.2vw, 32px); transform: rotate(-4deg); }
+.note { position: absolute; color: var(--lilac); font-size: clamp(22px, 2.2vw, 32px); transform: rotate(-4deg); }
 .note svg { position: absolute; overflow: visible; }
 @media (max-width: 760px) { .hero-notes .n2, .hero-notes .n3 { display: none; } }
 
@@ -183,7 +184,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden; background: var(--taupe-deep);
 }
 .portrait .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
-.portrait .n { position: absolute; color: var(--tomato); font-size: 30px; }
+.portrait .n { position: absolute; color: var(--lilac); font-size: 30px; }
 .portrait .n svg { position: absolute; overflow: visible; }
 .stats { margin-top: clamp(48px, 7vw, 88px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; border-top: 1.5px solid var(--ink); padding-top: 28px; }
 .stat b { display: inline-block; position: relative; font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
@@ -297,11 +298,11 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
     <div class="hero-notes" aria-hidden="true">
       <div class="note hand n1" style="right: 9%; top: 24%;">
         organza translúcida
-        <svg class="sketch draw" width="120" height="90" style="left: -96px; top: 22px;" viewBox="0 0 120 90"><path d="M118 6 C 86 10, 54 26, 30 58 M30 58 L 34 40 M30 58 L 48 54" stroke="#F2EEE8" stroke-width="2.4"/></svg>
+        <svg class="sketch draw" width="120" height="90" style="left: -96px; top: 22px;" viewBox="0 0 120 90"><path d="M118 6 C 86 10, 54 26, 30 58 M30 58 L 34 40 M30 58 L 48 54" stroke="#B07FB8" stroke-width="2.4"/></svg>
       </div>
       <div class="note hand n2" style="left: 8%; top: 44%; transform: rotate(3deg);">
         luz difusa
-        <svg class="sketch draw" width="150" height="40" style="left: -6px; top: 34px;" viewBox="0 0 220 40"><path d="M4 18 C 50 8, 120 30, 214 12" stroke="#F2EEE8" stroke-width="2.2"/></svg>
+        <svg class="sketch draw" width="150" height="40" style="left: -6px; top: 34px;" viewBox="0 0 220 40"><path d="M4 18 C 50 8, 120 30, 214 12" stroke="#B07FB8" stroke-width="2.2"/></svg>
       </div>
       <div class="note hand n3" style="left: 58%; top: 15%; transform: rotate(-7deg);">
         prompt → render
@@ -352,7 +353,7 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
         </div>
         <figure class="portrait" style="margin: 0;">
           <div class="frame"><img src="assets/retrato.jpg" alt="Retrato de Maria Valéria em preto e branco" width="900" height="1206"></div>
-          <span class="n hand" aria-hidden="true" style="left: -18%; top: 30%; transform: rotate(-8deg);">design<svg class="sketch" width="70" height="40" style="left: 58px; top: 18px;" viewBox="0 0 70 40"><path d="M2 8 C 24 6, 46 14, 66 32 M66 32 L 52 30 M66 32 L 62 18" stroke="#C8321E" stroke-width="2"/></svg></span>
+          <span class="n hand" aria-hidden="true" style="left: -18%; top: 30%; transform: rotate(-8deg);">design<svg class="sketch" width="70" height="40" style="left: 58px; top: 18px;" viewBox="0 0 70 40"><path d="M2 8 C 24 6, 46 14, 66 32 M66 32 L 52 30 M66 32 L 62 18" stroke="#B07FB8" stroke-width="2"/></svg></span>
           <span class="n hand" aria-hidden="true" style="right: -16%; bottom: 18%; transform: rotate(6deg);">pesquisa + IA</span>
         </figure>
       </div>
