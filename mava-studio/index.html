@@ -100,14 +100,21 @@ img { display: block; max-width: 100%; }
 }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .top .logo img { height: 56px; width: auto; }
-.top nav { display: flex; gap: clamp(14px, 2.4vw, 34px); flex-wrap: wrap; justify-content: flex-end; }
+.top nav { align-items: center; display: flex; gap: clamp(14px, 2.4vw, 34px); flex-wrap: wrap; justify-content: flex-end; }
 .top nav a {
   color: var(--paper); text-decoration: none;
   font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
 }
+.top nav .lang {
+  appearance: none; cursor: pointer; background: transparent; color: var(--paper);
+  border: 1.5px solid var(--paper); border-radius: 999px; padding: 4px 12px;
+  font: 600 12px/1 var(--f-grot); letter-spacing: .18em;
+}
+.top nav .lang:hover { background: var(--paper); color: var(--ink); }
 .top nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
 @media (max-width: 640px) {
   .top nav a:not(.keep) { display: none; }
+  .top nav { align-items: center; }
   .top .logo img { height: 44px; }
 }
 
@@ -287,6 +294,7 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
       <a href="#reports">Reports</a>
       <a href="#faq">FAQ</a>
       <a class="keep" href="#contato">Contato</a>
+      <button class="lang keep" id="langBtn" type="button" aria-label="Switch to English">EN</button>
     </nav>
   </div>
 </header>
@@ -502,3 +510,34 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
   </div>
 </footer>
 
+<script>
+(function () {
+  var EN = {"Sobre": "About", "Serviços": "Services", "Contato": "Contact", "organza translúcida": "sheer organza", "Mava Studio — Moda · Pesquisa · IA": "Mava Studio — Fashion · Research · AI", "Conheça os serviços": "See the services", "Fale comigo": "Talk to me", "Toda coleção começa com uma visão.": "Every collection starts with a vision.", "Tecnologia não substitui o design. Ela amplia o que ele pode ser.": "Technology doesn't replace design. It expands what design can be.", "(003) Quem fala": "(003) About me", "Design, pesquisa e IA aplicada ao produto.": "Design, research and AI applied to product.", "Designer e pesquisadora de moda, trabalho no ponto onde criação e tecnologia se encontram. Ajudo marcas e times de estilo a usar inteligência artificial com critério, do conceito ao produto.": "Fashion designer and researcher, working where creativity and technology meet. I help brands and design teams use artificial intelligence with intention, from concept to product.", "pesquisa + IA": "research + AI", "Anos em desenvolvimento de produto": "Years in product development", "Coleções auxiliadas com inovação": "Collections supported with innovation", "Marcas": "Brands", "Designers treinados em IA": "Designers trained in AI", "Universidade do Minho": "University of Minho", "(004) Serviços": "(004) Services", "Do conceito ao produto, com IA.": "From concept to product, with AI.", "Projetos sob medida para marcas e times de estilo que querem inovar no processo.": "Tailored projects for brands and design teams that want to innovate their process.", "fluxo criativo": "creative flow", "Produto": "Product", "IA no desenvolvimento de produto": "AI in product development", "Implementação de ferramentas e fluxos de IA no processo criativo e técnico da marca.": "Implementing AI tools and workflows across the brand's creative and technical process.", "Quero saber mais": "Learn more", "mão na massa": "hands-on", "Times": "Teams", "Treinamento de IA para times de estilo": "AI training for design teams", "Capacitação prática para designers aplicarem IA no dia a dia.": "Hands-on training so designers can use AI in their daily work.", "DNA da marca": "brand DNA", "Pesquisa": "Research", "Pesquisa de tendências sob medida": "Tailored trend research", "Pesquisa construída a partir do DNA e do público de cada marca.": "Research built around each brand's DNA and audience.", "Conheça a consultoria →": "Visit the consultancy →", "Conhecimento pronto para aplicar.": "Knowledge ready to apply.", "Material digital, com acesso imediato após a compra pela Hotmart.": "Digital material, with instant access after purchase on Hotmart.", "Prompts": "Fashion", "de Moda": "Prompts", "testados ✓": "tested ✓", "IA · Imagem": "AI · Image", "Mensal": "Monthly", "Tendências": "Trends of", "do Mês": "the Month", "novo todo mês": "new every month", "Report de Prompts de Moda": "Fashion Prompts Report", "Prompts testados para gerar imagens, conceitos e peças com IA.": "Tested prompts for generating images, concepts and garments with AI.", "Comprar na Hotmart": "Buy on Hotmart", "Report de Tendências Mensal": "Monthly Trend Report", "As tendências do mês, analisadas e prontas para aplicar no produto.": "This month's trends, analyzed and ready to apply to product.", "(006) Perguntas frequentes": "(006) FAQ", "Antes de começar.": "Before we start.", "Preciso saber usar IA para contratar?": "Do I need to know AI to hire you?", "Não. O trabalho começa do ponto em que o seu time está.": "No. The work starts wherever your team is today.", "Os serviços são para marcas de qualquer porte?": "Are the services for brands of any size?", "Sim, de marcas autorais a grandes grupos.": "Yes, from independent labels to large groups.", "O treinamento é online ou presencial?": "Is the training online or in person?", "Os dois formatos são possíveis, conforme a necessidade do time.": "Both formats are available, depending on what the team needs.", "Quanto tempo dura um projeto?": "How long does a project take?", "Depende do escopo. O prazo é definido na proposta.": "It depends on the scope. The timeline is set in the proposal.", "Como recebo os reports depois da compra?": "How do I get the reports after buying?", "O acesso é enviado pela Hotmart logo após a confirmação do pagamento.": "Hotmart sends you access as soon as the payment is confirmed.", "O report de tendências sai todo mês?": "Is there a new trend report every month?", "Sim, uma nova edição é lançada todo mês.": "Yes, a new edition comes out every month.", "(007) Contato": "(007) Contact", "Vamos mover sua visão": "Let's move your vision", "adiante.": "ahead.", "Chamar no WhatsApp": "Message on WhatsApp", "Mava Studio — início": "Mava Studio — home", "Principal": "Main", "Abertura": "Opening", "Figura envolta em organza rosa e lilás, com flores brancas sobrepostas": "Figure wrapped in pink and lilac organza, with white flowers overlaid", "O que significa MAVA": "What MAVA stands for", "Retrato de Maria Valéria em preto e branco": "Black and white portrait of Maria Valéria", "Marcas e instituições com que já trabalhei": "Brands and institutions I have worked with", "Silhueta com flor azul e rosa luminosa sobreposta": "Silhouette with a glowing blue and pink flower overlaid", "Silhueta com flor laranja em dupla exposição": "Silhouette with an orange flower in double exposure", "Silhueta com flores azuis desfocadas ao redor": "Silhouette surrounded by blurred blue flowers"};
+  var texts = [], attrs = [];
+  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+  while (walker.nextNode()) {
+    var n = walker.currentNode, k = n.nodeValue.trim();
+    if (k && Object.prototype.hasOwnProperty.call(EN, k)) texts.push({ n: n, pt: n.nodeValue, en: n.nodeValue.replace(k, EN[k]) });
+  }
+  document.querySelectorAll("[alt],[aria-label]").forEach(function (el) {
+    ["alt", "aria-label"].forEach(function (a) {
+      var v = el.getAttribute(a);
+      if (v && Object.prototype.hasOwnProperty.call(EN, v)) attrs.push({ el: el, a: a, pt: v, en: EN[v] });
+    });
+  });
+  var btn = document.getElementById("langBtn");
+  function set(lang) {
+    var en = lang === "en";
+    texts.forEach(function (t) { t.n.nodeValue = en ? t.en : t.pt; });
+    attrs.forEach(function (t) { t.el.setAttribute(t.a, en ? t.en : t.pt); });
+    document.documentElement.lang = en ? "en" : "pt-BR";
+    btn.textContent = en ? "PT" : "EN";
+    btn.setAttribute("aria-label", en ? "Mudar para português" : "Switch to English");
+    try { localStorage.setItem("mava-lang", lang); } catch (e) {}
+  }
+  var saved = "pt";
+  try { saved = localStorage.getItem("mava-lang") || "pt"; } catch (e) {}
+  set(saved);
+  btn.addEventListener("click", function () { set(document.documentElement.lang === "en" ? "pt" : "en"); });
+})();
+</script>
