@@ -14,7 +14,7 @@
   --ink-soft: #4A443F;
   --tomato: #C8321E;
   --tomato-deep: #8E1F12;
-  --lilac: #B07FB8;
+  --berry: #8A2D51;
   --tape: rgba(242, 232, 205, .78);
 
   --f-grot: "Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -147,7 +147,7 @@ img { display: block; max-width: 100%; }
 }
 .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-notes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.note { position: absolute; color: var(--lilac); font-size: clamp(22px, 2.2vw, 32px); transform: rotate(-4deg); }
+.note { position: absolute; color: var(--berry); font-size: clamp(22px, 2.2vw, 32px); transform: rotate(-4deg); }
 .note svg { position: absolute; overflow: visible; }
 @media (max-width: 760px) { .hero-notes .n2, .hero-notes .n3 { display: none; } }
 
@@ -184,7 +184,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden; background: var(--taupe-deep);
 }
 .portrait .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
-.portrait .n { position: absolute; color: var(--lilac); font-size: 30px; }
+.portrait .n { position: absolute; color: var(--berry); font-size: 30px; }
 .portrait .n svg { position: absolute; overflow: visible; }
 .stats { margin-top: clamp(48px, 7vw, 88px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; border-top: 1.5px solid var(--ink); padding-top: 28px; }
 .stat b { display: inline-block; position: relative; font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
@@ -208,7 +208,7 @@ img { display: block; max-width: 100%; }
 .svc { display: flex; flex-direction: column; gap: 18px; }
 .svc .swatch { position: relative; aspect-ratio: 4 / 5; max-width: 100%; }
 .svc .swatch img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 58% 42% 51% 49% / 46% 56% 44% 54%; }
-.svc .swatch .n { position: absolute; right: 4%; bottom: 6%; color: var(--paper); font-size: 30px; transform: rotate(-6deg); text-shadow: 0 1px 8px rgba(0,0,0,.25); }
+.svc .swatch .n { position: absolute; right: -2%; top: 1%; color: var(--berry); font-size: 30px; transform: rotate(8deg); }
 .svc .meta { display: flex; justify-content: space-between; border-top: 1.5px solid var(--ink); padding-top: 12px; }
 .svc h3 { margin: 0; font-weight: 700; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -.02em; }
 .svc p { margin: 0; font-family: var(--f-serif); font-size: 19px; line-height: 1.4; color: var(--ink-soft); flex: 1; }
@@ -298,11 +298,11 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
     <div class="hero-notes" aria-hidden="true">
       <div class="note hand n1" style="right: 9%; top: 24%;">
         organza translúcida
-        <svg class="sketch draw" width="120" height="90" style="left: -96px; top: 22px;" viewBox="0 0 120 90"><path d="M118 6 C 86 10, 54 26, 30 58 M30 58 L 34 40 M30 58 L 48 54" stroke="#B07FB8" stroke-width="2.4"/></svg>
+        <svg class="sketch draw" width="120" height="90" style="left: -96px; top: 22px;" viewBox="0 0 120 90"><path d="M118 6 C 86 10, 54 26, 30 58 M30 58 L 34 40 M30 58 L 48 54" stroke="#8A2D51" stroke-width="2.4"/></svg>
       </div>
       <div class="note hand n2" style="left: 8%; top: 44%; transform: rotate(3deg);">
         luz difusa
-        <svg class="sketch draw" width="150" height="40" style="left: -6px; top: 34px;" viewBox="0 0 220 40"><path d="M4 18 C 50 8, 120 30, 214 12" stroke="#B07FB8" stroke-width="2.2"/></svg>
+        <svg class="sketch draw" width="150" height="40" style="left: -6px; top: 34px;" viewBox="0 0 220 40"><path d="M4 18 C 50 8, 120 30, 214 12" stroke="#8A2D51" stroke-width="2.2"/></svg>
       </div>
       <div class="note hand n3" style="left: 58%; top: 15%; transform: rotate(-7deg);">
         prompt → render
@@ -331,10 +331,10 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
         <blockquote>Toda coleção começa com uma visão. <em>Tecnologia não substitui o design. Ela amplia o que ele pode ser.</em></blockquote>
       </div>
       <ul class="acro" aria-label="O que significa MAVA">
-        <li><span class="ini">M<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6 C 14 6, 5 26, 7 44 C 9 66, 30 76, 48 73 C 68 70, 77 52, 74 34 C 71 14, 52 4, 32 9" stroke="#C8321E" stroke-width="2.4"/></svg></span>Moving</li>
-        <li><span class="ini">A<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M44 7 C 20 4, 6 22, 6 42 C 6 64, 26 76, 44 74 C 66 72, 76 56, 74 36 C 72 16, 56 6, 36 10" stroke="#C8321E" stroke-width="2.4"/></svg></span>Artistic</li>
-        <li><span class="ini">V<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M38 5 C 16 8, 4 26, 8 46 C 12 66, 32 77, 50 72 C 70 66, 78 48, 72 30 C 66 12, 50 4, 30 10" stroke="#C8321E" stroke-width="2.4"/></svg></span>Visions</li>
-        <li><span class="ini">A<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M42 6 C 18 6, 6 24, 7 44 C 8 64, 28 76, 46 74 C 66 71, 77 54, 74 34 C 71 15, 54 5, 34 9" stroke="#C8321E" stroke-width="2.4"/></svg></span>Ahead</li>
+        <li><span class="ini">M<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6 C 14 6, 5 26, 7 44 C 9 66, 30 76, 48 73 C 68 70, 77 52, 74 34 C 71 14, 52 4, 32 9" stroke="#8A2D51" stroke-width="2.4"/></svg></span>Moving</li>
+        <li><span class="ini">A<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M44 7 C 20 4, 6 22, 6 42 C 6 64, 26 76, 44 74 C 66 72, 76 56, 74 36 C 72 16, 56 6, 36 10" stroke="#8A2D51" stroke-width="2.4"/></svg></span>Artistic</li>
+        <li><span class="ini">V<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M38 5 C 16 8, 4 26, 8 46 C 12 66, 32 77, 50 72 C 70 66, 78 48, 72 30 C 66 12, 50 4, 30 10" stroke="#8A2D51" stroke-width="2.4"/></svg></span>Visions</li>
+        <li><span class="ini">A<svg class="sketch" viewBox="0 0 80 80" aria-hidden="true"><path d="M42 6 C 18 6, 6 24, 7 44 C 8 64, 28 76, 46 74 C 66 71, 77 54, 74 34 C 71 15, 54 5, 34 9" stroke="#8A2D51" stroke-width="2.4"/></svg></span>Ahead</li>
       </ul>
     </div>
   </section>
@@ -353,7 +353,7 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
         </div>
         <figure class="portrait" style="margin: 0;">
           <div class="frame"><img src="assets/retrato.jpg" alt="Retrato de Maria Valéria em preto e branco" width="900" height="1206"></div>
-          <span class="n hand" aria-hidden="true" style="left: -18%; top: 30%; transform: rotate(-8deg);">design<svg class="sketch" width="70" height="40" style="left: 58px; top: 18px;" viewBox="0 0 70 40"><path d="M2 8 C 24 6, 46 14, 66 32 M66 32 L 52 30 M66 32 L 62 18" stroke="#B07FB8" stroke-width="2"/></svg></span>
+          <span class="n hand" aria-hidden="true" style="left: -18%; top: 30%; transform: rotate(-8deg);">design<svg class="sketch" width="70" height="40" style="left: 58px; top: 18px;" viewBox="0 0 70 40"><path d="M2 8 C 24 6, 46 14, 66 32 M66 32 L 52 30 M66 32 L 62 18" stroke="#8A2D51" stroke-width="2"/></svg></span>
           <span class="n hand" aria-hidden="true" style="right: -16%; bottom: 18%; transform: rotate(6deg);">pesquisa + IA</span>
         </figure>
       </div>
@@ -362,7 +362,7 @@ footer small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase
         <div class="stat"><b>5</b><span>Anos em desenvolvimento de produto</span></div>
         <div class="stat"><b>+12</b><span>Coleções auxiliadas com inovação</span></div>
         <div class="stat"><b>+15</b><span>Marcas</span></div>
-        <div class="stat mark"><b>+100<svg class="sketch draw" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M110 6 C 40 4, 4 26, 8 52 C 12 82, 70 96, 120 92 C 176 88, 198 64, 192 40 C 186 16, 140 4, 84 10" stroke="#C8321E" stroke-width="3"/></svg></b><span>Designers treinados em IA</span></div>
+        <div class="stat mark"><b>+100<svg class="sketch draw" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M110 6 C 40 4, 4 26, 8 52 C 12 82, 70 96, 120 92 C 176 88, 198 64, 192 40 C 186 16, 140 4, 84 10" stroke="#8A2D51" stroke-width="3"/></svg></b><span>Designers treinados em IA</span></div>
       </div>
       <ul class="brands" aria-label="Marcas e instituições com que já trabalhei">
         <li>UDESC</li><li>Audaces</li><li>Grupo Soma</li><li>Cris Barros</li><li>Farm</li><li>Animale</li><li>Maria Filó</li><li>CSM</li><li>Universidade do Minho</li>
